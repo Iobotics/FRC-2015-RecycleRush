@@ -32,7 +32,7 @@ public class OperateArcadeTankDrive extends CommandBase {
             rot = scale.get(rot);
         }
         System.out.println("joysticks: " + mag + ", " + rot);
-        drivetrain.setTank(mag, rot);
+        drivetrain.setArcade(mag, rot);
     }
 
     // Make this return true when this Command no longer needs to run execute()

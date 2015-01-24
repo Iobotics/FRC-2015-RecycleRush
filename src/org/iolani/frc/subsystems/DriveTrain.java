@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import org.iolani.frc.RobotMap;
-import org.iolani.frc.commands.OperateXYTankDrive;
+import org.iolani.frc.commands.OperateArcadeTankDrive;
 import org.iolani.frc.util.Utility;
 
 /**
@@ -47,7 +47,7 @@ public class DriveTrain extends Subsystem {
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        this.setDefaultCommand(new OperateXYTankDrive());
+        this.setDefaultCommand(new OperateArcadeTankDrive());
     }
     
     /**
