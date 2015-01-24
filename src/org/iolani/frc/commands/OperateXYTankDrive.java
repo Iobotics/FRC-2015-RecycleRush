@@ -4,17 +4,17 @@
  */
 package org.iolani.frc.commands;
 
-//import org.iolani.frc.util.PowerScaler;
+import org.iolani.frc.util.PowerScaler;
 
 /**
  *
  * @author iobotics
  */
-public class OperateTankDrive extends CommandBase {
+public class OperateXYTankDrive extends CommandBase {
     
     //private static final double DEADBAND = 0.05;  
     
-    public OperateTankDrive() {
+    public OperateXYTankDrive() {
         requires(drivetrain);
     }
 
@@ -26,18 +26,16 @@ public class OperateTankDrive extends CommandBase {
     protected void execute() {
         double left  = oi.getLeftStick().getY();
         double right = oi.getRightStick().getY();
-        
         //drivetrain.setHighGear(oi.getGearShiftButton().get());
         
         // signal conditioning //
-        /*PowerScaler scale = oi.getTankDriveScaler();
+        PowerScaler scale = oi.getDriveScaler();
         if(scale != null) {
-            mag = scale.get(mag);
-            rot = scale.get(rot);
-        }*/
-        //if(Math.abs(mag) < DEADBAND) { mag = 0.0; }
-        //if(Math.abs(rot) < DEADBAND) { rot = 0.0; }
-        
+            left = scale.get(left);
+            right = scale.get(right);
+        }
+
+        System.out.println("joysticks: " + left + ", " + right);
         drivetrain.setTank(left, right);
     }
 

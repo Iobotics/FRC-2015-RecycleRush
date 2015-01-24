@@ -31,8 +31,7 @@ public class PowerScaler {
                 }
             }
         }
-        //return cmd * Utility.sign(input);
-        return 0;
+        return cmd * Utility.sign(input);
     }
     
     public static class PowerPoint {
