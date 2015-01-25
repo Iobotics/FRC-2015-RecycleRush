@@ -15,7 +15,8 @@ public class OI {
     private final Joystick _lStick = new Joystick(1);
     private final Joystick _rStick = new Joystick(2);
     
-    private final JoystickButton _arcadeDriveButton = new JoystickButton(_rStick, 1); 
+    private final JoystickButton _pauseLeftIntakeButton = new JoystickButton(_lStick, 5);
+    private final JoystickButton _pauseRightIntakeButton = new JoystickButton(_rStick, 4);
     
     private final PowerScaler _driveScaler;
     
@@ -28,7 +29,8 @@ public class OI {
                 new PowerScaler.PowerPoint(0.75, 0.5),
                 new PowerScaler.PowerPoint(0.90, 1.0)
             });
-        _arcadeDriveButton.whenPressed(new OperateArcadeTankDrive());
+        _pauseLeftIntakeButton.whileHeld(new SetIntakePower(false, true));
+        _pauseRightIntakeButton.whileHeld(new SetIntakePower(true, false));
         
     }
     
