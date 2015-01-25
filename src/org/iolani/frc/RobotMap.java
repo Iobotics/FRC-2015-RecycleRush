@@ -25,7 +25,8 @@ public class RobotMap {
     public static final int driveRightTalon2 = 5;
     public static final int driveRightTalon3 = 6;
     
-    
+    public static final int leftIntakeTalon = 1;
+    public static final int rightIntakeTalon = 2;
     
     // pneumatics //
     public static final int pressureRegulatorDIO = 14;
