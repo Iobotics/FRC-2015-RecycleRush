@@ -26,7 +26,7 @@ public class OperateArcadeTankDrive extends CommandBase {
         double rot = oi.getLeftStick().getX();
         
         // signal conditioning //
-        PowerScaler scale = oi.getDriveScaler();
+        PowerScaler scale = oi.getTankScaler();
         if(scale != null) {
             mag = scale.get(mag);
             rot = scale.get(rot);

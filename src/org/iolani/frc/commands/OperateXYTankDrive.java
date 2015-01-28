@@ -29,7 +29,7 @@ public class OperateXYTankDrive extends CommandBase {
         //drivetrain.setHighGear(oi.getGearShiftButton().get());
         
         // signal conditioning //
-        PowerScaler scale = oi.getDriveScaler();
+        PowerScaler scale = oi.getArcadeScaler();
         if(scale != null) {
             left = scale.get(left);
             right = scale.get(right);
