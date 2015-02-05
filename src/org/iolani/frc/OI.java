@@ -1,6 +1,8 @@
 
 package org.iolani.frc;
 
+import com.kauailabs.nav6.frc.IMUAdvanced;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.iolani.frc.util.PowerScaler;
@@ -13,6 +15,9 @@ import org.iolani.frc.commands.*;
 public class OI {
     private final Joystick _lStick = new Joystick(1);
     private final Joystick _rStick = new Joystick(2);
+    
+    private final SerialPort _imuSerial= new SerialPort(57600, SerialPort.Port.kMXP);
+    private final IMUAdvanced _imu = new IMUAdvanced(_imuSerial, (byte) 50);
     
     private final JoystickButton _pauseLeftIntakeButton = new JoystickButton(_lStick, 5);
     private final JoystickButton _pauseRightIntakeButton = new JoystickButton(_rStick, 4);
@@ -65,6 +70,10 @@ public class OI {
     
     public double getVariableRightIntakePower() {
     	return _rStick.getTwist();
+    }
+    
+    public IMUAdvanced getIMUSensor() {
+    	return _imu;
     }
     
 }
