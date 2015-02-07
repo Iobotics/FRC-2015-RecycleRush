@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.iolani.frc.OI;
 import org.iolani.frc.subsystems.DriveTrain;
 import org.iolani.frc.subsystems.Intake;
+import org.iolani.frc.subsystems.NavigationSensor;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -18,6 +19,7 @@ public abstract class CommandBase extends Command {
     // Create a single static instance of all of your subsystems
     public static final DriveTrain drivetrain = new DriveTrain();
     public static final Intake intake = new Intake();
+    public static final NavigationSensor navsensor = new NavigationSensor();
     //public static final Pneumatics pneumatics = new Pneumatics();
 
     public static void init() {
@@ -29,6 +31,7 @@ public abstract class CommandBase extends Command {
         oi = new OI();
 
         // Show what command your subsystem is running on the SmartDashboard
+        navsensor.init();
         drivetrain.init();
         intake.init();
         //pneumatics.init();
