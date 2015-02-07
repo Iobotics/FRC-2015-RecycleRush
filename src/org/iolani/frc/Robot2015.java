@@ -2,7 +2,6 @@
 package org.iolani.frc;
 
 import org.iolani.frc.commands.CommandBase;
-import com.kauailabs.nav6.frc.IMU;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 //import edu.wpi.first.wpilibj.command.Command;
@@ -30,7 +29,6 @@ public class Robot2015 extends IterativeRobot {
         // instantiate the command used for the autonomous period
         //autonomousCommand = new ExampleCommand();
 		CommandBase.init();
-		
     }
 	
 	public void disabledPeriodic() {
