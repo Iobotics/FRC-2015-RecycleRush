@@ -18,13 +18,18 @@ public class RobotMap {
     // public static final int rangefinderModule = 1;
     
     // drive //
-    public static final int driveLeftTalon1  = 1;
-    public static final int driveLeftTalon2  = 2;
-    public static final int driveLeftTalon3  = 3;
-    public static final int driveRightTalon1 = 4;
-    public static final int driveRightTalon2 = 5;
-    public static final int driveRightTalon3 = 6;
+    public static final int driveLeftTalon1    = 1;
+    public static final int driveLeftTalon2    = 2;
+    public static final int driveLeftTalon3    = 3;
+    public static final int driveRightTalon1   = 4;
+    public static final int driveRightTalon2   = 5;
+    public static final int driveRightTalon3   = 6;
     
+    // elevator //
+    public static final int elevatorLeftTalon  = 7;
+    public static final int elevatorRightTalon = 8;
+    
+    // intake //
     public static final int leftIntakeTalon = 1;
     public static final int rightIntakeTalon = 2;
     

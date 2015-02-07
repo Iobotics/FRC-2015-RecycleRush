@@ -22,6 +22,9 @@ public class OI {
     private final JoystickButton _pauseLeftIntakeButton = new JoystickButton(_lStick, 5);
     private final JoystickButton _pauseRightIntakeButton = new JoystickButton(_rStick, 4);
     
+    private final JoystickButton _elevatorUpButton   = new JoystickButton(_rStick, 3);
+    private final JoystickButton _elevatorDownButton = new JoystickButton(_lStick, 3);
+    
     private final PowerScaler _tankScaler;
     private final PowerScaler _arcadeScaler;
     
@@ -46,6 +49,8 @@ public class OI {
         _pauseLeftIntakeButton.whileHeld(new SetIntakePower(false, true));
         _pauseRightIntakeButton.whileHeld(new SetIntakePower(true, false));
         
+        _elevatorUpButton.whileHeld(new SetElevatorPower(1.0));
+        _elevatorDownButton.whileHeld(new SetElevatorPower(-0.5));
     }
     
     public Joystick getLeftStick()  {

@@ -16,10 +16,10 @@ public class Intake extends Subsystem {
 	private Talon _rIntake;
     
     public void init() {
-    	System.out.println("Intake init start");
+    	//System.out.println("Intake init start");
     	_lIntake = new Talon(RobotMap.leftIntakeTalon);
     	_rIntake = new Talon(RobotMap.rightIntakeTalon);
-    	System.out.println("Intake init end");
+    	//System.out.println("Intake init end");
     }
     
     public void setPower(double leftPower, double rightPower) {
