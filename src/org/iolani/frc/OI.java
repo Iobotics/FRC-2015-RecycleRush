@@ -20,6 +20,9 @@ public class OI {
     private final JoystickButton _elevatorUpButton   = new JoystickButton(_rStick, 3);
     private final JoystickButton _elevatorDownButton = new JoystickButton(_lStick, 3);
     
+    private final JoystickButton _elevatorTestButton1 = new JoystickButton(_rStick, 6);
+    private final JoystickButton _elevatorTestButton2 = new JoystickButton(_rStick, 7);
+    
     private final PowerScaler _tankScaler;
     private final PowerScaler _arcadeScaler;
     
@@ -46,6 +49,9 @@ public class OI {
         
         _elevatorUpButton.whileHeld(new SetElevatorPower(1.0));
         _elevatorDownButton.whileHeld(new SetElevatorPower(-0.5));
+        
+        _elevatorTestButton1.whenPressed(new SetElevatorHeight(10.0));
+        _elevatorTestButton2.whenPressed(new SetElevatorHeight(0.0));
     }
     
     public Joystick getLeftStick()  {

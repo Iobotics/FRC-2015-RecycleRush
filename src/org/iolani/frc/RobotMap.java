@@ -28,6 +28,9 @@ public class RobotMap {
     // elevator //
     public static final int elevatorLeftTalon  = 7;
     public static final int elevatorRightTalon = 8;
+    public static final int elevatorEncoderA   = 0;
+    public static final int elevatorEncoderB   = 1;
+    public static final int elevatorLimitLower = 2;
     
     // intake //
     public static final int leftIntakeTalon = 1;
