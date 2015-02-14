@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.iolani.frc.RobotMap;
-import org.iolani.frc.commands.SetElevatorPower;
+import org.iolani.frc.commands.HoldElevatorPosition;
 import org.iolani.frc.util.Utility;
 
 /**
@@ -117,7 +117,7 @@ public class Elevator extends Subsystem implements PIDOutput {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        this.setDefaultCommand(new SetElevatorPower(0));
+        this.setDefaultCommand(new HoldElevatorPosition());
     }
     
     public void debug() {
