@@ -34,6 +34,15 @@ public class Elevator extends Subsystem implements PIDOutput {
 	public static final double HEIGHT_INCHES_TOLERANCE = 0.25;
 	public static final double POWER_UP_MAX            = 1.0;
 	public static final double POWER_DOWN_MAX          = 0.5;
+	public static final double CLEARANCE_HEIGHT_INCHES = 14.5;
+	public static final double TOTE_HEIGHT_INCHES      = 11.25;
+	
+	public static final double[] TOTE_HEIGHTS = new double[5];
+	static {
+		for(int i = 0; i < TOTE_HEIGHTS.length; i++) {
+			TOTE_HEIGHTS[i] = CLEARANCE_HEIGHT_INCHES + i * TOTE_HEIGHT_INCHES;
+		}
+	}
 	
 	// PID control constants //
 	private static final double kP = 0.25;
