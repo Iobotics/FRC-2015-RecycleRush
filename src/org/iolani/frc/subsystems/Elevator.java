@@ -119,6 +119,29 @@ public class Elevator extends Subsystem implements PIDOutput {
 		setHeightSetpointInches(TOTE_HEIGHTS[totePosition - 1]);
 	}
 	
+	/**
+	 * 
+	 * @param above
+	 * @return nearest tote height
+	 */
+	public double getNearestToteHeight(boolean above) {
+		double nextHeight = 0.0;
+		if(above) {
+			for(int i = 0; i < TOTE_HEIGHTS.length; i++) {
+				if(nextHeight < TOTE_HEIGHTS[i]) {
+					nextHeight = TOTE_HEIGHTS[i];
+				}
+			}
+		} else {
+			for(int i = TOTE_HEIGHTS.length - 1; i >= 0; i--) {
+				if(nextHeight > TOTE_HEIGHTS[i]) {
+					nextHeight = TOTE_HEIGHTS[i];
+				}
+			}
+		}
+		return nextHeight;
+	}
+	
 	public boolean isLowerLimit() {
 		return !_limitLower.get();
 	}
@@ -147,6 +170,8 @@ public class Elevator extends Subsystem implements PIDOutput {
     	SmartDashboard.putData("elevator-pid", _pid);
     	SmartDashboard.putBoolean("elevator-on-target", this.isOnTarget());
     	SmartDashboard.putNumber("elevator-power", _rTalon.get());
+    	SmartDashboard.putNumber("elevator-next-above-tote", this.getNearestToteHeight(true));
+    	SmartDashboard.putNumber("elevator-next-below-tote", this.getNearestToteHeight(false));
     	//System.out.println(this.getEncoderTicks() + ", " + this.getHeightInches() + ", " + this.getLowerLimitSwitch());
     }
     
