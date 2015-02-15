@@ -108,6 +108,17 @@ public class Elevator extends Subsystem implements PIDOutput {
 		return old;
 	}
 	
+	/**
+	 * must be an integer from 0 to 5
+	 * @param totePosition
+	 */
+	public void setToteHeight(int totePosition) {
+		if(totePosition < 0 || totePosition >= TOTE_HEIGHTS.length) {
+			throw new IllegalArgumentException("Invalid tote position: " + totePosition);
+		}
+		setHeightSetpointInches(TOTE_HEIGHTS[totePosition - 1]);
+	}
+	
 	public boolean isLowerLimit() {
 		return !_limitLower.get();
 	}
