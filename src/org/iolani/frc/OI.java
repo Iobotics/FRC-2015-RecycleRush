@@ -14,8 +14,8 @@ public class OI {
     private final Joystick _lStick = new Joystick(1);
     private final Joystick _rStick = new Joystick(2);
     
-    private final JoystickButton _pauseLeftIntakeButton = new JoystickButton(_lStick, 5);
-    private final JoystickButton _pauseRightIntakeButton = new JoystickButton(_rStick, 4);
+    private final JoystickButton _runLeftIntakeButton = new JoystickButton(_lStick, 5);
+    private final JoystickButton _runRightIntakeButton = new JoystickButton(_rStick, 4);
     
     private final JoystickButton _elevatorUpButton   = new JoystickButton(_rStick, 3);
     private final JoystickButton _elevatorDownButton = new JoystickButton(_lStick, 3);
@@ -44,8 +44,8 @@ public class OI {
         		new PowerScaler.PowerPoint(0.9, 1.0)
         	});
         
-        _pauseLeftIntakeButton.whileHeld(new SetIntakePower(false, true));
-        _pauseRightIntakeButton.whileHeld(new SetIntakePower(true, false));
+        _runLeftIntakeButton.whileHeld(new SetIntakePower(true, false));
+        _runRightIntakeButton.whileHeld(new SetIntakePower(false, true));
         
         _elevatorUpButton.whileHeld(new SetElevatorPower(1.0));
         _elevatorDownButton.whileHeld(new SetElevatorPower(-0.5));

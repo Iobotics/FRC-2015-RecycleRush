@@ -9,7 +9,7 @@ public class SetIntakePower extends CommandBase {
     public SetIntakePower() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	this(true, true);
+    	this(false, false);
     }
     
     public SetIntakePower(boolean leftOn, boolean rightOn) {
