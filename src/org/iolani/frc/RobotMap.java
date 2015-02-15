@@ -33,8 +33,8 @@ public class RobotMap {
     public static final int elevatorLimitLower = 2;
     
     // intake //
-    public static final int leftIntakeTalon = 1;
-    public static final int rightIntakeTalon = 2;
+    public static final int intakeLeftTalon  = 1;
+    public static final int intakeRightTalon = 2;
     
     // pneumatics //
     public static final int pressureRegulatorDIO = 14;
