@@ -22,7 +22,7 @@ public class Intake extends Subsystem {
     
     public void setPower(double leftPower, double rightPower) {
     	_lIntake.set(leftPower);
-    	_rIntake.set(rightPower);
+    	_rIntake.set(-rightPower);
     }
 
     public void initDefaultCommand() {

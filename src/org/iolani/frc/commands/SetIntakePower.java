@@ -15,7 +15,7 @@ public class SetIntakePower extends CommandBase {
     public SetIntakePower(boolean leftOn, boolean rightOn) {
     	requires(intake);
     	_leftPower = leftOn ? 1.0 : 0.0;
-    	_rightPower = rightOn ? -1.0 : 0.0;
+    	_rightPower = rightOn ? 1.0 : 0.0;
     }
     
     public SetIntakePower(double power) {
@@ -25,7 +25,7 @@ public class SetIntakePower extends CommandBase {
     public SetIntakePower(double leftPower, double rightPower) {
     	requires(intake);
     	_leftPower = leftPower;
-    	_rightPower = -rightPower;
+    	_rightPower = rightPower;
     }
 
     // Called just before this Command runs the first time
