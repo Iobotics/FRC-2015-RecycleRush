@@ -15,14 +15,17 @@ public class OI {
     private final Joystick _lStick = new Joystick(1);
     private final Joystick _rStick = new Joystick(2);
     
-    private final JoystickButton _intakeLeftButton = new JoystickButton(_lStick, 1);
-    private final JoystickButton _intakeRightButton = new JoystickButton(_rStick, 1);
+    private final JoystickButton _intakeLeftButton       = new JoystickButton(_lStick, 1);
+    private final JoystickButton _intakeRightButton      = new JoystickButton(_rStick, 1);
     
-    private final JoystickButton _elevatorUpButton   = new JoystickButton(_rStick, 3);
-    private final JoystickButton _elevatorDownButton = new JoystickButton(_lStick, 3);
+    private final JoystickButton _elevatorUpButton       = new JoystickButton(_lStick, 2);
+    private final JoystickButton _elevatorDownButton     = new JoystickButton(_rStick, 3);
     
-    private final JoystickButton _elevatorTestButton1 = new JoystickButton(_rStick, 6);
-    private final JoystickButton _elevatorTestButton2 = new JoystickButton(_rStick, 7);
+    private final JoystickButton _elevatorUpOneButton    = new JoystickButton(_rStick, 3);
+    private final JoystickButton _elevatorDownOneButton  = new JoystickButton(_lStick, 5);
+    
+    private final JoystickButton _elevatorTestButton1    = new JoystickButton(_rStick, 6);
+    private final JoystickButton _elevatorTestButton2    = new JoystickButton(_rStick, 7);
     
     private final PowerScaler _tankScaler;
     private final PowerScaler _arcadeScaler;
@@ -44,6 +47,9 @@ public class OI {
         		new PowerScaler.PowerPoint(0.75, 0.5),
         		new PowerScaler.PowerPoint(0.9, 1.0)
         	});
+        
+        _elevatorUpOneButton.whenPressed(new JogElevatorToteHeight(1));
+        _elevatorDownOneButton.whenPressed(new JogElevatorToteHeight(-1));
         
         _elevatorUpButton.whileHeld(new SetElevatorPower(1.0));
         _elevatorDownButton.whileHeld(new SetElevatorPower(-0.5));
