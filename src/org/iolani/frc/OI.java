@@ -48,8 +48,8 @@ public class OI {
         		new PowerScaler.PowerPoint(0.9, 1.0)
         	});
         
-        _elevatorUpOneButton.whenPressed(new JogElevatorToteHeight(1));
-        _elevatorDownOneButton.whenPressed(new JogElevatorToteHeight(-1));
+        _elevatorUpOneButton.whenPressed(new JogElevatorToteHeight(true));
+        _elevatorDownOneButton.whenPressed(new JogElevatorToteHeight(false));
         
         _elevatorUpButton.whileHeld(new SetElevatorPower(1.0));
         _elevatorDownButton.whileHeld(new SetElevatorPower(-0.5));
