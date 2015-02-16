@@ -109,14 +109,14 @@ public class Elevator extends Subsystem implements PIDOutput {
 	}
 	
 	/**
-	 * must be an integer from 0 to 5
+	 * must be an integer from 0 to TOTE_HEIGHTS.length
 	 * @param totePosition
 	 */
 	public void setToteHeight(int totePosition) {
 		if(totePosition < 0 || totePosition >= TOTE_HEIGHTS.length) {
 			throw new IllegalArgumentException("Invalid tote position: " + totePosition);
 		}
-		setHeightSetpointInches(TOTE_HEIGHTS[totePosition - 1]);
+		setHeightSetpointInches(TOTE_HEIGHTS[totePosition]);
 	}
 	
 	/**
@@ -125,21 +125,22 @@ public class Elevator extends Subsystem implements PIDOutput {
 	 * @return nearest tote height
 	 */
 	public double getNearestToteHeight(boolean above) {
-		double nextHeight = 0.0;
+		double height = getHeightInches();
 		if(above) {
 			for(int i = 0; i < TOTE_HEIGHTS.length; i++) {
-				if(nextHeight < TOTE_HEIGHTS[i]) {
-					nextHeight = TOTE_HEIGHTS[i];
+				if(height < TOTE_HEIGHTS[i]) {
+					return TOTE_HEIGHTS[i];
 				}
 			}
+			return TOTE_HEIGHTS[TOTE_HEIGHTS.length - 1];
 		} else {
 			for(int i = TOTE_HEIGHTS.length - 1; i >= 0; i--) {
-				if(nextHeight > TOTE_HEIGHTS[i]) {
-					nextHeight = TOTE_HEIGHTS[i];
+				if(height > TOTE_HEIGHTS[i]) {
+					return TOTE_HEIGHTS[i];
 				}
 			}
+			return 0.0;
 		}
-		return nextHeight;
 	}
 	
 	public boolean isLowerLimit() {
