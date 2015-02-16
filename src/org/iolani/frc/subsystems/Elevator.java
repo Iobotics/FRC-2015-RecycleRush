@@ -31,7 +31,7 @@ public class Elevator extends Subsystem implements PIDOutput {
 	// physical constants //
 	public static final double HEIGHT_INCHES_MAX       = 65.0;
 	public static final double HEIGHT_INCHES_MIN       = 0.0;
-	public static final double HEIGHT_INCHES_TOLERANCE = 0.25;
+	public static final double HEIGHT_INCHES_TOLERANCE = 0.50;
 	public static final double POWER_UP_MAX            = 1.0;
 	public static final double POWER_DOWN_MAX          = 0.5;
 	public static final double CLEARANCE_HEIGHT_INCHES = 14.5;
