@@ -16,7 +16,7 @@ public class JogElevatorToteHeight extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-		elevator.setHeightSetpointInches(elevator.getNearestToteHeight(_up));
+		elevator.setHeightSetpointInches(elevator.getNearestToteHeight(_up) + (_up? 0.75 : -0.5));
     }
 
     // Called repeatedly when this Command is scheduled to run
