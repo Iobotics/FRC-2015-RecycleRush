@@ -18,8 +18,8 @@ public class OI {
     private final JoystickButton _intakeLeftButton       = new JoystickButton(_lStick, 1);
     private final JoystickButton _intakeRightButton      = new JoystickButton(_rStick, 1);
     
-    private final JoystickButton _elevatorUpButton       = new JoystickButton(_lStick, 2);
-    private final JoystickButton _elevatorDownButton     = new JoystickButton(_rStick, 2);
+    private final JoystickButton _elevatorUpButton       = new JoystickButton(_rStick, 2);
+    private final JoystickButton _elevatorDownButton     = new JoystickButton(_lStick, 2);
     
     private final JoystickButton _elevatorUpOneButton    = new JoystickButton(_rStick, 3);
     private final JoystickButton _elevatorDownOneButton  = new JoystickButton(_lStick, 5);
