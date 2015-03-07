@@ -125,7 +125,7 @@ public class Elevator extends Subsystem implements PIDOutput {
 	 * @return nearest tote height
 	 */
 	public double getNearestToteHeight(boolean above) {
-		double height = getHeightInches();
+		double height = _pid.getSetpoint();
 		if(above) {
 			for(int i = 0; i < TOTE_HEIGHTS.length; i++) {
 				if(height < TOTE_HEIGHTS[i]) {
