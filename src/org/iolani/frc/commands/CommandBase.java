@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.iolani.frc.OI;
 import org.iolani.frc.subsystems.DriveTrain;
+import org.iolani.frc.subsystems.Grabber;
 import org.iolani.frc.subsystems.Intake;
 import org.iolani.frc.subsystems.Elevator;
 import org.iolani.frc.subsystems.NavigationSensor;
@@ -22,7 +23,7 @@ public abstract class CommandBase extends Command {
     public static final Intake intake = new Intake();
     public static final Elevator elevator = new Elevator();
     public static final NavigationSensor navsensor = new NavigationSensor();
-    //public static final Pneumatics pneumatics = new Pneumatics();
+    public static final Grabber grabber = new Grabber();
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
@@ -37,7 +38,7 @@ public abstract class CommandBase extends Command {
         drivetrain.init();
         intake.init();
         elevator.init();
-        //pneumatics.init();
+        grabber.init();
     }
 
     public CommandBase(String name) {

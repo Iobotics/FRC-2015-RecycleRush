@@ -35,4 +35,8 @@ public class RobotMap {
     // intake //
     public static final int intakeLeftTalon  = 0;
     public static final int intakeRightTalon = 1;
+    
+    // grabber //
+    public static final int grabberTalon	 = 2;
+    
 }
