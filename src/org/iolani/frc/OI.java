@@ -29,6 +29,9 @@ public class OI {
     
     private final JoystickButton _elevatorHomeButton     = new JoystickButton(_lStick, 6);
     
+    private final JoystickButton _grabberCloseButton 	 = new JoystickButton(_lStick, 5);
+    private final JoystickButton _grabberOpenButton		 = new JoystickButton(_rStick, 4);
+    
     private final PowerScaler _tankScaler;
     private final PowerScaler _arcadeScaler;
     
@@ -60,6 +63,9 @@ public class OI {
         _elevatorTestButton2.whenPressed(new SetElevatorHeight(0.0));
         
         _elevatorHomeButton.whenPressed(new HomeElevator());
+        
+        _grabberOpenButton.whileHeld(new SetGrabberPower(0.5));
+        _grabberCloseButton.whileHeld(new SetGrabberPower(-1.0));
     }
     
     public Joystick getLeftStick()  {
