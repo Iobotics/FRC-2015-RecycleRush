@@ -22,7 +22,7 @@ public class OI {
     private final JoystickButton _elevatorDownButton     = new JoystickButton(_lStick, 2);
     
     private final JoystickButton _elevatorUpOneButton    = new JoystickButton(_rStick, 3);
-    private final JoystickButton _elevatorDownOneButton  = new JoystickButton(_lStick, 5);
+    private final JoystickButton _elevatorDownOneButton  = new JoystickButton(_lStick, 4);
     
     private final JoystickButton _elevatorTestButton1    = new JoystickButton(_rStick, 6);
     private final JoystickButton _elevatorTestButton2    = new JoystickButton(_lStick, 3);
