@@ -64,7 +64,7 @@ public class OI {
         
         _elevatorHomeButton.whenPressed(new HomeElevator());
         
-        _grabberOpenButton.whileHeld(new SetGrabberPower(0.5));
+        _grabberOpenButton.whileHeld(new SetGrabberPower(1.0));
         _grabberCloseButton.whileHeld(new SetGrabberPower(-1.0));
     }
     
