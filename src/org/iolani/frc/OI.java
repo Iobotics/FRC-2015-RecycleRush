@@ -64,8 +64,8 @@ public class OI {
         
         _elevatorHomeButton.whenPressed(new HomeElevator());
         
-        _grabberOpenButton.whileHeld(new SetGrabberPower(1.0));
-        _grabberCloseButton.whileHeld(new SetGrabberPower(-1.0));
+        _grabberOpenButton.whenPressed(new SetGrabberGrabbed(false));
+        _grabberCloseButton.whenPressed(new SetGrabberGrabbed(true));
     }
     
     public Joystick getLeftStick()  {

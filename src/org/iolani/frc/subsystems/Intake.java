@@ -4,7 +4,7 @@ import org.iolani.frc.RobotMap;
 import org.iolani.frc.commands.*;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.CANTalon;
 
 /**
  *
@@ -12,12 +12,15 @@ import edu.wpi.first.wpilibj.Talon;
 
 public class Intake extends Subsystem {
 
-	private Talon _lIntake;
-	private Talon _rIntake;
+	private CANTalon _lIntake;
+	private CANTalon _rIntake;
     
     public void init() {
-    	_lIntake = new Talon(RobotMap.intakeLeftTalon);
-    	_rIntake = new Talon(RobotMap.intakeRightTalon);
+    	_lIntake = new CANTalon(RobotMap.intakeLeftTalon);
+    	_rIntake = new CANTalon(RobotMap.intakeRightTalon);
+    	
+    	_lIntake.enableBrakeMode(true);
+    	_rIntake.enableBrakeMode(true);
     }
     
     public void setPower(double leftPower, double rightPower) {

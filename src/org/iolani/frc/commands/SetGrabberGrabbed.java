@@ -4,20 +4,20 @@ package org.iolani.frc.commands;
 /**
  *
  */
-public class SetGrabberPower extends CommandBase {
+public class SetGrabberGrabbed extends CommandBase {
 	
-	private final double _power;
+	private final boolean _value;
 
-    public SetGrabberPower(double power) {
+    public SetGrabberGrabbed(boolean value) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	_power = power;
+    	_value = value;
     	requires(grabber);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	grabber.setPower(_power);
+    	grabber.setGrabbed(_value);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -31,7 +31,6 @@ public class SetGrabberPower extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	grabber.setPower(0.0);
     }
 
     // Called when another command which requires one or more of the same

@@ -1,21 +1,22 @@
 package org.iolani.frc.subsystems;
 
 import org.iolani.frc.RobotMap;
-import org.iolani.frc.commands.SetGrabberPower;
+import org.iolani.frc.commands.SetGrabberGrabbed;
 
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class Grabber extends Subsystem {
-    
-    private Talon _grabTalon;
+
+    private Solenoid _valve;
     
     public void init() {
     	System.out.println("Grabber init start");
-    	_grabTalon = new Talon(RobotMap.grabberTalon);
+    	_valve = new Solenoid(RobotMap.grabberSolenoid);
     	System.out.println("Grabber init end");
     }
     
@@ -24,21 +25,21 @@ public class Grabber extends Subsystem {
      * @return true if the grabber is grabbed
      */
     public boolean isGrabbed() {
-    	return false;
+    	return _valve.get();
     }
     
-    /*public void setGrabbed(boolean grabbed) {
-    	_grabTalon.set(grabbed? 0.5 : -0.5);
-    }*/
-    
-    public void setPower(double power) {
-    	_grabTalon.set(power);
+    public void setGrabbed(boolean grabbed) {
+    	_valve.set(grabbed);
     }
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	this.setDefaultCommand(new SetGrabberPower(0.0));
+    	this.setDefaultCommand(new SetGrabberGrabbed(true));
+    }
+    
+    public void debug() {
+    	SmartDashboard.putBoolean("grabber-valve", _valve.get());
     }
 }
 

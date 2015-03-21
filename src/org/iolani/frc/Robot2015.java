@@ -4,8 +4,10 @@ package org.iolani.frc;
 import org.iolani.frc.commands.CommandBase;
 import org.iolani.frc.commands.HomeElevator;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 //import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -22,12 +24,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot2015 extends IterativeRobot {
 
     //Command autonomousCommand;
+	PowerDistributionPanel _pdp;
+	Compressor             _compressor;
 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
+    	_pdp = new PowerDistributionPanel();
+    	_compressor = new Compressor();
+    	
+    	_pdp.clearStickyFaults();
+    	_compressor.clearAllPCMStickyFaults();
+    	_compressor.start();
+    	
         // instantiate the command used for the autonomous period
         //autonomousCommand = new ExampleCommand();
 		CommandBase.init();
@@ -75,6 +86,7 @@ public class Robot2015 extends IterativeRobot {
         
         SmartDashboard.putData(Scheduler.getInstance());
         CommandBase.elevator.debug();
+        CommandBase.grabber.debug();
     }
     
     /**
