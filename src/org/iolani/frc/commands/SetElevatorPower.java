@@ -15,6 +15,7 @@ public class SetElevatorPower extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
     	elevator.setPower(_power);
+    	elevator.setDesiredPosition(-1.0);
     }
 
     // Called repeatedly when this Command is scheduled to run

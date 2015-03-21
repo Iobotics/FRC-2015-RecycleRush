@@ -55,6 +55,8 @@ public class Elevator extends Subsystem implements PIDOutput {
 	private Encoder       _encoder;
 	private DigitalInput  _limitLower;
     private PIDController _pid;
+    
+    private double _desiredPosition;
 	
 	public void init() {
 		_lTalon     = new CANTalon(RobotMap.elevatorLeftTalon);
@@ -71,6 +73,8 @@ public class Elevator extends Subsystem implements PIDOutput {
     	_pid.setInputRange(HEIGHT_INCHES_MIN, HEIGHT_INCHES_MAX);
         _pid.setOutputRange(-POWER_DOWN_MAX, POWER_UP_MAX);
         _pid.setAbsoluteTolerance(HEIGHT_INCHES_TOLERANCE);
+        
+        _desiredPosition = 0.0;
 	}
 	
 	/**
@@ -105,6 +109,17 @@ public class Elevator extends Subsystem implements PIDOutput {
 		double old = _pid.getSetpoint();
 		this.setPIDEnabled(true);
 		_pid.setSetpoint(inches);
+		return old;
+	}
+	
+	public double getDesiredPosition() {
+		return _desiredPosition;
+	}
+	
+	// if the value is negative, there is no desired position //
+	public double setDesiredPosition(double value) {
+		double old = _desiredPosition;
+		_desiredPosition = value;
 		return old;
 	}
 	

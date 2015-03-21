@@ -31,6 +31,7 @@ public class SetElevatorHeight extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
     	elevator.setPIDEnabled(false);
+    	elevator.setDesiredPosition(_heightInches);
     }
 
     // Called when another command which requires one or more of the same

@@ -6,6 +6,7 @@ package org.iolani.frc.commands;
 public class JogElevatorToteHeight extends CommandBase {
 	
 	private final boolean _up;
+	private double _desired;
 
     public JogElevatorToteHeight(boolean up) {
         // Use requires() here to declare subsystem dependencies
@@ -16,7 +17,8 @@ public class JogElevatorToteHeight extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-		elevator.setHeightSetpointInches(elevator.getNearestToteHeight(_up) + (_up? 0.75 : -0.5));
+    	_desired = elevator.getNearestToteHeight(_up); /*+ (_up? 0.75 : -0.5)*/
+		elevator.setHeightSetpointInches(_desired);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -31,6 +33,7 @@ public class JogElevatorToteHeight extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
     	elevator.setPower(0.0);
+    	elevator.setDesiredPosition(_desired);
     }
 
     // Called when another command which requires one or more of the same

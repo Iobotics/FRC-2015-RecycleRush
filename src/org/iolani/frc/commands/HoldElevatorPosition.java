@@ -1,7 +1,7 @@
 package org.iolani.frc.commands;
 
 /**
- *
+ *	Hold at the desired position or current position if no desired position is set.
  */
 public class HoldElevatorPosition extends CommandBase {
 
@@ -13,7 +13,8 @@ public class HoldElevatorPosition extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	elevator.setHeightSetpointInches(elevator.getHeightInches());
+    	double desired = elevator.getDesiredPosition();
+    	elevator.setHeightSetpointInches(desired >= 0? desired: elevator.getHeightInches());
     }
 
     // Called repeatedly when this Command is scheduled to run

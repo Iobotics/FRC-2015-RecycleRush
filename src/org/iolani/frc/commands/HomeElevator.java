@@ -30,6 +30,7 @@ public class HomeElevator extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
     	elevator.setPower(0.0);
+    	elevator.setDesiredPosition(0.0);
     }
 
     // Called when another command which requires one or more of the same
