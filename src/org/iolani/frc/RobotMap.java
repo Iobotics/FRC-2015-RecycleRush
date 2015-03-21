@@ -33,10 +33,10 @@ public class RobotMap {
     public static final int elevatorLimitLower = 2;
     
     // intake //
-    public static final int intakeLeftTalon  = 0;
-    public static final int intakeRightTalon = 1;
+    public static final int intakeLeftTalon    = 9;
+    public static final int intakeRightTalon   = 10;
     
     // grabber //
-    public static final int grabberTalon	 = 2;
+    public static final int grabberTalon	   = 2;
     
 }
