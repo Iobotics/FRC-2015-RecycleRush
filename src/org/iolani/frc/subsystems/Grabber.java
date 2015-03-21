@@ -35,7 +35,7 @@ public class Grabber extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	this.setDefaultCommand(new SetGrabberGrabbed(true));
+    	this.setDefaultCommand(new SetGrabberGrabbed(false));
     }
     
     public void debug() {
