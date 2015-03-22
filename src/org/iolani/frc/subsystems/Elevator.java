@@ -34,7 +34,7 @@ public class Elevator extends Subsystem implements PIDOutput {
 	public static final double HEIGHT_INCHES_TOLERANCE = 0.50;
 	public static final double POWER_UP_MAX            = 1.0;
 	public static final double POWER_DOWN_MAX          = 0.5;
-	public static final double CLEARANCE_HEIGHT_INCHES = 14.5;
+	public static final double CLEARANCE_HEIGHT_INCHES = 15.0; // 14.5;
 	public static final double TOTE_HEIGHT_INCHES      = 11.25;
 	
 	public static final double[] TOTE_HEIGHTS = new double[5];
@@ -46,8 +46,8 @@ public class Elevator extends Subsystem implements PIDOutput {
 	
 	// PID control constants //
 	private static final double kP = 0.25;
-	private static final double kI = 0.0;
-	private static final double kD = 0.3;
+	private static final double kI = 0.001;
+	private static final double kD = 0.0;
 	    
 	// hardware //
 	private CANTalon      _lTalon;
