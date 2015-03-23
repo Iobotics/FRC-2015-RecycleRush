@@ -12,11 +12,13 @@ public class NavigationSensor extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    private final SerialPort _imuSerial= new SerialPort(57600, SerialPort.Port.kMXP);
-	private final IMUAdvanced _imu = new IMUAdvanced(_imuSerial, (byte) 50);
+    private SerialPort  _imuSerial;
+	private IMUAdvanced _imu;
 	
 	public void init() {
-		
+		_imuSerial = new SerialPort(57600, SerialPort.Port.kMXP);
+		_imu = new IMUAdvanced(_imuSerial, (byte) 50);
+	}
 	}
 	
 	public void zeroGyro() {
