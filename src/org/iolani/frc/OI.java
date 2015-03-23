@@ -32,6 +32,8 @@ public class OI {
     private final JoystickButton _grabberCloseButton 	 = new JoystickButton(_lStick, 5);
     private final JoystickButton _grabberOpenButton		 = new JoystickButton(_rStick, 4);
     
+    private final JoystickButton _navCalibrateButton     = new JoystickButton(_lStick, 7);
+    
     private final PowerScaler _tankScaler;
     private final PowerScaler _arcadeScaler;
     
@@ -66,6 +68,8 @@ public class OI {
         
         _grabberOpenButton.whenPressed(new SetGrabberGrabbed(false));
         _grabberCloseButton.whenPressed(new SetGrabberGrabbed(true));
+        
+        _navCalibrateButton.whenPressed(new CalibrateNavigationSensor());
     }
     
     public Joystick getLeftStick()  {
