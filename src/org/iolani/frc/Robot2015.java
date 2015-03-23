@@ -2,7 +2,7 @@
 package org.iolani.frc;
 
 import org.iolani.frc.commands.CommandBase;
-import org.iolani.frc.commands.HomeElevator;
+import org.iolani.frc.commands.*;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -87,6 +87,8 @@ public class Robot2015 extends IterativeRobot {
         SmartDashboard.putData(Scheduler.getInstance());
         CommandBase.elevator.debug();
         CommandBase.grabber.debug();
+        CommandBase.drivetrain.debug();
+        CommandBase.navsensor.debug();
     }
     
     /**
