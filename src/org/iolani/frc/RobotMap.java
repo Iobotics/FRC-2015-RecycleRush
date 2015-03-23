@@ -15,10 +15,10 @@ public class RobotMap {
     public static final int driveRightTalon1   = 1;
     public static final int driveRightTalon2   = 2;
     public static final int driveRightTalon3   = 3;
-    public static final int driveLeftEncoderA  = 2;
-    public static final int driveLeftEncoderB  = 3;
-    public static final int driveRightEncoderA = 4;
-    public static final int driveRightEncoderB = 5;
+    public static final int driveLeftEncoderA  = 3;
+    public static final int driveLeftEncoderB  = 4;
+    public static final int driveRightEncoderA = 5;
+    public static final int driveRightEncoderB = 6;
     
     // elevator //
     public static final int elevatorLeftTalon  = 7;
