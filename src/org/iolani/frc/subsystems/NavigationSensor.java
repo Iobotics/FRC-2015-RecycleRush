@@ -4,6 +4,7 @@ import com.kauailabs.nav6.frc.IMUAdvanced;
 
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -26,6 +27,11 @@ public class NavigationSensor extends Subsystem {
 	
 	public void zeroGyro() {
 		_imu.zeroYaw();
+	}
+	
+	public void debug() {
+		SmartDashboard.putNumber("imu-yaw", _imu.getYaw());
+		SmartDashboard.putData("imu", _imu);
 	}
 	
     public void initDefaultCommand() {
