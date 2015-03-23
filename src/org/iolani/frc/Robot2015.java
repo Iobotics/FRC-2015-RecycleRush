@@ -43,6 +43,7 @@ public class Robot2015 extends IterativeRobot {
         //autonomousCommand = new ExampleCommand();
 		CommandBase.init();
 		new HomeElevator().start();
+		new CalibrateNavigationSensor().start();
     }
 	
 	public void disabledPeriodic() {
