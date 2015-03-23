@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.iolani.frc.RobotMap;
 import org.iolani.frc.commands.OperateArcadeTankDrive;
@@ -35,16 +36,11 @@ public class DriveTrain extends Subsystem {
     private PIDOutput     _rPIDOutput;
     
 	// physical constants //
-	private static final double MM_PER_INCH = 25.4;
-	// wheel constants //
-	private static final int    DRIVER_PULLEY_TEETH = 15; // need to be updated
-	private static final int    DRIVEN_PULLEY_TEETH = 40;
-	private static final int    BELT_PITCH_MM       = 5;
-	private static final double DRIVEN_INCH_PER_REV = DRIVEN_PULLEY_TEETH * BELT_PITCH_MM / MM_PER_INCH;
-	private static final double DRIVER_INCH_PER_REV = DRIVEN_INCH_PER_REV * DRIVER_PULLEY_TEETH / DRIVEN_PULLEY_TEETH;
+	private static final double WHEEL_DIAMETER_INCHES = 8.0;
+	private static final double WHEEL_INCHES_PER_REV = Math.PI * WHEEL_DIAMETER_INCHES;
 	// encoder constants //
 	private static final int    ENCODER_TICKS_PER_REV = 360;
-	private static final double ENCODER_INCH_PER_TICK = DRIVER_INCH_PER_REV / ENCODER_TICKS_PER_REV;
+	private static final double ENCODER_INCH_PER_TICK = WHEEL_INCHES_PER_REV / ENCODER_TICKS_PER_REV;
 	// PID control constants //
 	private static final double kP = 0.25;
 	private static final double kI = 0.0;
@@ -58,10 +54,14 @@ public class DriveTrain extends Subsystem {
         _rTalon1 = new CANTalon(RobotMap.driveRightTalon1);
         _rTalon2 = new CANTalon(RobotMap.driveRightTalon2);
         _rTalon3 = new CANTalon(RobotMap.driveRightTalon3);
-        _lEncoder = new Encoder(RobotMap.driveLeftEncoderA, RobotMap.driveLeftEncoderB);
+        
+        _lEncoder = new Encoder(RobotMap.driveLeftEncoderB, RobotMap.driveLeftEncoderA);
+        _lEncoder.setDistancePerPulse(ENCODER_INCH_PER_TICK);
         _rEncoder = new Encoder(RobotMap.driveRightEncoderA, RobotMap.driveRightEncoderB);
-        _lPID = new PIDController(kP, kI, kD, _lEncoder, _lPIDOutput);
-        _rPID = new PIDController(kP, kI, kD, _rEncoder, _rPIDOutput);
+        _rEncoder.setDistancePerPulse(ENCODER_INCH_PER_TICK);
+        
+        //_lPID = new PIDController(kP, kI, kD, _lEncoder, _lPIDOutput);
+        //_rPID = new PIDController(kP, kI, kD, _rEncoder, _rPIDOutput);
         System.out.println("drive init end");
     }
 
