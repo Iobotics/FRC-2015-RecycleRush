@@ -128,6 +128,15 @@ public class DriveTrain extends Subsystem {
 
         this.setTank(leftMotorSpeed, rightMotorSpeed);
     }
+    
+    public void debug() {
+    	//SmartDashboard.putData("drive-left-encoder", _lEncoder);
+    	//SmartDashboard.putData("drive-right-encoder", _rEncoder);
+    	SmartDashboard.putNumber("drive-left-ticks", _lEncoder.get());
+    	SmartDashboard.putNumber("drive-right-ticks", _rEncoder.get());
+    	SmartDashboard.putNumber("drive-left-distance", _lEncoder.getDistance());
+    	SmartDashboard.putNumber("drive-right-distance", _rEncoder.getDistance());
+    }
 
     /**
      * Arcade drive implements single stick driving.
