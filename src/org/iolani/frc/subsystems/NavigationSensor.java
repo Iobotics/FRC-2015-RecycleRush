@@ -19,6 +19,9 @@ public class NavigationSensor extends Subsystem {
 		_imuSerial = new SerialPort(57600, SerialPort.Port.kMXP);
 		_imu = new IMUAdvanced(_imuSerial, (byte) 50);
 	}
+	
+	public boolean isCalibrating() {
+		return _imu.isCalibrating();
 	}
 	
 	public void zeroGyro() {
