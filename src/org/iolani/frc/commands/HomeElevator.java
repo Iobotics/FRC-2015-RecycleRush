@@ -5,12 +5,15 @@ package org.iolani.frc.commands;
  */
 public class HomeElevator extends CommandBase {
 
+	private static final double TIMEOUT = 10;
+	
     public HomeElevator() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(elevator);
     	this.setInterruptible(false);
     	this.setRunWhenDisabled(true);
+    	this.setTimeout(TIMEOUT);
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +27,7 @@ public class HomeElevator extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return elevator.isLowerLimit();
+        return elevator.isLowerLimit() || this.isTimedOut();
     }
 
     // Called once after isFinished returns true
