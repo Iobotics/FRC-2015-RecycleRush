@@ -20,6 +20,7 @@ import org.iolani.frc.util.Utility;
  *
  * @author koluke
  */
+
 public class DriveTrain extends Subsystem {
 	// hardware //
     private CANTalon      _lTalon1;
@@ -30,10 +31,10 @@ public class DriveTrain extends Subsystem {
     private CANTalon      _rTalon3;
     private Encoder       _lEncoder;
     private Encoder       _rEncoder;
-    private PIDController _lPID;
-    private PIDController _rPID;
-    private PIDOutput     _lPIDOutput;
-    private PIDOutput     _rPIDOutput;
+    //private PIDController _lPID;
+    //private PIDController _rPID;
+    //private PIDOutput     _lPIDOutput;
+    //private PIDOutput     _rPIDOutput;
     
 	// physical constants //
 	private static final double WHEEL_DIAMETER_INCHES = 8.0;
@@ -42,9 +43,9 @@ public class DriveTrain extends Subsystem {
 	private static final int    ENCODER_TICKS_PER_REV = 360;
 	private static final double ENCODER_INCH_PER_TICK = WHEEL_INCHES_PER_REV / ENCODER_TICKS_PER_REV;
 	// PID control constants //
-	private static final double kP = 0.25;
-	private static final double kI = 0.0;
-	private static final double kD = 0.3;
+	//private static final double kP = 0.25;
+	//private static final double kI = 0.0;
+	//private static final double kD = 0.3;
     
     public void init()  {
     	System.out.println("drive init start");
@@ -60,7 +61,7 @@ public class DriveTrain extends Subsystem {
         _rEncoder = new Encoder(RobotMap.driveRightEncoderA, RobotMap.driveRightEncoderB);
         _rEncoder.setDistancePerPulse(ENCODER_INCH_PER_TICK);
         
-        //_lPID = new PIDController(kP, kI, kD, _lEncoder, _lPIDOutput);
+       // _lPID = new PIDController(kP, kI, kD, _lEncoder, _lPIDOutput);
         //_rPID = new PIDController(kP, kI, kD, _rEncoder, _rPIDOutput);
         System.out.println("drive init end");
     }
@@ -73,6 +74,18 @@ public class DriveTrain extends Subsystem {
     	_rTalon1.set(right);
     	_rTalon2.set(right);
     	_rTalon3.set(right);
+    }
+    
+    public void setTankSide(boolean side, double power) { //left = false, right = true
+    	if (side) {
+    		_rTalon1.set(power);
+    		_rTalon2.set(power);
+    		_rTalon3.set(power);
+    	} else {
+    		_lTalon1.set(power);
+    		_lTalon2.set(power);
+    		_lTalon3.set(power);
+    	}
     }
     
     public void initDefaultCommand() {
@@ -127,6 +140,21 @@ public class DriveTrain extends Subsystem {
         }
 
         this.setTank(leftMotorSpeed, rightMotorSpeed);
+    }
+    
+    public double setDistanceSetpointInches(double inches) {
+    	double old = _pid.getSetpoint();
+		this.setPIDEnabled(true);
+		_pid.setSetpoint(inches);
+		return old;
+    }
+    
+    public Encoder getLeftEncoder() {
+    	return _lEncoder;
+    }
+    
+    public Encoder getRightEncoder() {
+    	return _rEncoder;
     }
     
     public void debug() {
