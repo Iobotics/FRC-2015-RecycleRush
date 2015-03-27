@@ -25,17 +25,17 @@ public class Grabber extends Subsystem {
      * @return true if the grabber is grabbed
      */
     public boolean isGrabbed() {
-    	return _valve.get();
+    	return !_valve.get();
     }
     
     public void setGrabbed(boolean grabbed) {
-    	_valve.set(grabbed);
+    	_valve.set(!grabbed);
     }
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	this.setDefaultCommand(new SetGrabberGrabbed(false));
+    	this.setDefaultCommand(new SetGrabberGrabbed(true));
     }
     
     public void debug() {

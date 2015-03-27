@@ -91,8 +91,8 @@ public class Elevator extends Subsystem implements PIDOutput {
 		if(this.isLowerLimit() && power < 0) {
 			power = 0;
 		}
-		_lTalon.set(-power);
-		_rTalon.set(power);
+		_lTalon.set(power);
+		_rTalon.set(-power);
 	}
 	
 	public boolean setPIDEnabled(boolean enabled) {
