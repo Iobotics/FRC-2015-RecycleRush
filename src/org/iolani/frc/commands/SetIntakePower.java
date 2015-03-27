@@ -4,28 +4,22 @@ package org.iolani.frc.commands;
  *
  */
 public class SetIntakePower extends CommandBase {
-	private double _leftPower, _rightPower;
-
-    public SetIntakePower() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	this(false, false);
-    }
-    
-    public SetIntakePower(boolean leftOn, boolean rightOn) {
-    	requires(intake);
-    	_leftPower = leftOn ? 1.0 : 0.0;
-    	_rightPower = rightOn ? 1.0 : 0.0;
-    }
+	private final double _leftPower, _rightPower;
+	private final boolean _terminate;
     
     public SetIntakePower(double power) {
     	this(power, power);
     }
     
     public SetIntakePower(double leftPower, double rightPower) {
+    	this(leftPower, rightPower, false);
+    }
+    
+    public SetIntakePower(double leftPower, double rightPower, boolean terminate) {
     	requires(intake);
-    	_leftPower = leftPower;
+    	_leftPower  = leftPower;
     	_rightPower = rightPower;
+    	_terminate  = terminate;
     }
 
     // Called just before this Command runs the first time
@@ -40,7 +34,7 @@ public class SetIntakePower extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return _terminate;
     }
 
     // Called once after isFinished returns true

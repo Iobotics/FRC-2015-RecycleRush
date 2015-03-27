@@ -7,12 +7,16 @@ package org.iolani.frc.commands;
 public class SetGrabberGrabbed extends CommandBase {
 	
 	private final boolean _value;
+	private final boolean _terminate;
 
-    public SetGrabberGrabbed(boolean value) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	_value = value;
+	public SetGrabberGrabbed(boolean value) {
+		this(value, false);
+	}
+	
+    public SetGrabberGrabbed(boolean value, boolean terminate) {
     	requires(grabber);
+    	_value     = value;
+    	_terminate = terminate;
     }
 
     // Called just before this Command runs the first time
@@ -26,7 +30,7 @@ public class SetGrabberGrabbed extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return _terminate;
     }
 
     // Called once after isFinished returns true

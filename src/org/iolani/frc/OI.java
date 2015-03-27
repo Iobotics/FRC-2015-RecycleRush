@@ -4,8 +4,11 @@ package org.iolani.frc;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 import org.iolani.frc.util.PowerScaler;
 import org.iolani.frc.commands.*;
+import org.iolani.frc.commands.auto.AutoDriveStraight;
+import org.iolani.frc.commands.auto.AutoTurn;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -33,6 +36,9 @@ public class OI {
     private final JoystickButton _grabberOpenButton		 = new JoystickButton(_rStick, 4);
     
     private final JoystickButton _navCalibrateButton     = new JoystickButton(_lStick, 7);
+    
+    private final JoystickButton _autoTestButton1        = new JoystickButton(_lStick, 8);
+    private final JoystickButton _autoTestButton2        = new JoystickButton(_rStick, 9);
     
     private final PowerScaler _tankScaler;
     private final PowerScaler _arcadeScaler;
@@ -70,6 +76,9 @@ public class OI {
         _grabberCloseButton.whenPressed(new SetGrabberGrabbed(true));
         
         _navCalibrateButton.whenPressed(new CalibrateNavigationSensor());
+        
+        _autoTestButton1.whenPressed(new AutoDriveStraight(36));
+        _autoTestButton2.whenPressed(new AutoTurn(90));
     }
     
     public Joystick getLeftStick()  {

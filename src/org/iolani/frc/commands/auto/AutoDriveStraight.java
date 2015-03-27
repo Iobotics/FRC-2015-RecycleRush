@@ -11,31 +11,35 @@ import org.iolani.frc.commands.CommandBase;
 /**
  *
  */
-public class AutoDriveForward extends CommandBase implements PIDOutput {
+public class AutoDriveStraight extends CommandBase implements PIDOutput {
 	
-	private double _distance;
-	private PIDController _pid;
+	private final double        _distance;
+	private final PIDController _pid;
 	
 	private static final double kP = 0.10;
 	private static final double kI = 0.0;
 	private static final double kD = 0.0;
 	
-    public AutoDriveForward(double inches) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+	private static final double kTurn = 0.1;
+	
+    public AutoDriveStraight(double inches) {
     	requires(drivetrain);
+    	requires(navsensor);
+    	_distance = inches;
     	
     	_pid = new PIDController(kP, kI, kD, drivetrain.getLeftEncoder(), this);
-    	_distance = inches;
+    	_pid.setOutputRange(-0.35, 0.35);
     }
 
-    public void pidWrite(double value) {
-    	drivetrain.setTank(value, value);
+    public void pidWrite(double leftPower) {
+    	double rightPower = leftPower - kTurn * navsensor.getGyro();
+    	drivetrain.setTank(leftPower, rightPower);
     }
     
     // Called just before this Command runs the first time
     protected void initialize() {
     	drivetrain.getLeftEncoder().reset();
+    	navsensor.zeroGyro();
     	_pid.setSetpoint(_distance);
     	_pid.enable();
     }

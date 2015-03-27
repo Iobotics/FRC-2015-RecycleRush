@@ -2,6 +2,7 @@ package org.iolani.frc.subsystems;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
 
+import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -9,7 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class NavigationSensor extends Subsystem {
+public class NavigationSensor extends Subsystem implements PIDSource {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -27,6 +28,10 @@ public class NavigationSensor extends Subsystem {
 	
 	public void zeroGyro() {
 		_imu.zeroYaw();
+	}
+	
+	public double pidGet() {
+		return _imu.getYaw();
 	}
 	
 	public void debug() {

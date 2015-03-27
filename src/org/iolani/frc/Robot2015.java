@@ -1,13 +1,14 @@
 
 package org.iolani.frc;
 
-import org.iolani.frc.commands.CommandBase;
 import org.iolani.frc.commands.*;
+import org.iolani.frc.commands.auto.AutoTest;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 //import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -23,7 +24,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot2015 extends IterativeRobot {
 
-    //Command autonomousCommand;
+    Command _autoCommand;
 	PowerDistributionPanel _pdp;
 	Compressor             _compressor;
 
@@ -40,8 +41,9 @@ public class Robot2015 extends IterativeRobot {
     	_compressor.start();
     	
         // instantiate the command used for the autonomous period
-        //autonomousCommand = new ExampleCommand();
-		CommandBase.init();
+        //_autoCommand = new AutoTest();
+		
+    	CommandBase.init();
 		new HomeElevator().start();
 		new CalibrateNavigationSensor().start();
     }
@@ -52,7 +54,7 @@ public class Robot2015 extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-        //if (autonomousCommand != null) autonomousCommand.start();
+        if (_autoCommand != null) _autoCommand.start();
     }
 
     /**
@@ -68,7 +70,7 @@ public class Robot2015 extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        //if (autonomousCommand != null) autonomousCommand.cancel();
+        if (_autoCommand != null) _autoCommand.cancel();
     }
 
     /**
