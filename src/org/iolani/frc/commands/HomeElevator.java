@@ -4,7 +4,7 @@ package org.iolani.frc.commands;
  *
  */
 public class HomeElevator extends CommandBase {
-
+	
 	private static final double TIMEOUT = 10;
 	
     public HomeElevator() {
@@ -12,7 +12,7 @@ public class HomeElevator extends CommandBase {
         // eg. requires(chassis);
     	requires(elevator);
     	this.setInterruptible(false);
-    	this.setRunWhenDisabled(true);
+    	//this.setRunWhenDisabled(true);
     	this.setTimeout(TIMEOUT);
     }
 
