@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 //import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -29,7 +30,8 @@ public class Robot2015 extends IterativeRobot {
     Command _autoCommand;
 	PowerDistributionPanel _pdp;
 	Compressor             _compressor;
-	SendableChooser 	   _autoChooser;
+	//SendableChooser 	   _autoChooser;
+	Preferences            _prefs;
 	
 	
     /**
@@ -44,16 +46,16 @@ public class Robot2015 extends IterativeRobot {
     	_compressor.clearAllPCMStickyFaults();
     	_compressor.start();
     	
-    	_autoChooser = new SendableChooser();
+    	/*_autoChooser = new SendableChooser();
     	_autoChooser.addDefault("Do Nothing",  new CommandGroup());
     	_autoChooser.addObject("Trash Can 3", new AutoGrabTrashCan(AutoGrabTrashCan.kLEFT));
     	_autoChooser.addObject("Trash Can 1", new AutoGrabTrashCan(AutoGrabTrashCan.kRIGHT));
-    	_autoChooser.addObject("Drive Only", new AutoDriveOnly());
-    	
-    	SmartDashboard.putData("Autonomous mode chooser", _autoChooser);
+    	_autoChooser.addObject("Drive Only", new AutoDriveOnly());*/
+    	//SmartDashboard.putData("Autonomous mode chooser", _autoChooser);
+    	_prefs = Preferences.getInstance();
     	
         // instantiate the command used for the autonomous period
-        _autoCommand = new AutoGrabTrashCan();
+        //_autoCommand = new AutoGrabTrashCan();
 		//_autoCommand = new AutoDriveOnly();
         
     	CommandBase.init();
@@ -66,8 +68,15 @@ public class Robot2015 extends IterativeRobot {
 	}
 
     public void autonomousInit() {
-    	_autoCommand = (Command) _autoChooser.getSelected();
-    	_autoCommand.start();
+    	//_autoCommand = (Command) _autoChooser.getSelected();
+    	switch(_prefs.getInt("auto-program-number", 0)) {
+    		case 0: _autoCommand = null; break;
+    		case 1: _autoCommand = new AutoGrabTrashCan(AutoGrabTrashCan.kLEFT); break;
+    		case 2: _autoCommand = new AutoGrabTrashCan(AutoGrabTrashCan.kRIGHT); break;
+    		case 3: _autoCommand = new AutoDriveOnly(); break;
+    		default: _autoCommand = null; break;
+    	}
+    	if(_autoCommand != null) _autoCommand.start();
     }
 
     /**
