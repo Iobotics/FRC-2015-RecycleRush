@@ -26,10 +26,10 @@ public class OperateArcadeTankDrive extends CommandBase {
         double rot = oi.getLeftStick().getX();
         
         // signal conditioning //
-        PowerScaler scale = oi.getTankScaler();
-        if(scale != null) {
-            mag = scale.get(mag);
-            rot = scale.get(rot);
+        PowerScaler driveScale = oi.getNormalScaler();
+        if(driveScale != null) {
+            mag = driveScale.get(mag);
+            rot *= Math.abs(rot); // rot^2 preserving sign //
         }
         System.out.println("joysticks: " + mag + ", " + rot);
         drivetrain.setArcade(mag, rot);

@@ -43,25 +43,24 @@ public class OI {
     private final JoystickButton _autoTestButton3        = new JoystickButton(_lStick, 10);
     private final JoystickButton _autoTestButton4        = new JoystickButton(_lStick, 11);
     
-    private final PowerScaler _tankScaler;
-    private final PowerScaler _arcadeScaler;
+    private final PowerScaler _normalScaler;
+    private final PowerScaler _wimpScaler;
     
     public OI() {
         
         // use power scaling from traction mode on 2014 bot //
-        _tankScaler = new PowerScaler(new PowerScaler.PowerPoint[] {
+        _normalScaler = new PowerScaler(new PowerScaler.PowerPoint[] {
                 new PowerScaler.PowerPoint(0.0, 0.0),
                 new PowerScaler.PowerPoint(0.05, 0.0),
                 new PowerScaler.PowerPoint(0.75, 0.5),
                 new PowerScaler.PowerPoint(0.90, 1.0)
             });
         
-        _arcadeScaler = new PowerScaler(new PowerScaler.PowerPoint[] {
+        _wimpScaler = new PowerScaler(new PowerScaler.PowerPoint[] {
         		new PowerScaler.PowerPoint(0.0, 0.0),
         		new PowerScaler.PowerPoint(0.05, 0.0),
-        		new PowerScaler.PowerPoint(0.5, 0.3),
-        		new PowerScaler.PowerPoint(0.75, 0.5),
-        		new PowerScaler.PowerPoint(0.9, 1.0)
+        		new PowerScaler.PowerPoint(0.75, 0.2),
+        		new PowerScaler.PowerPoint(0.95, 0.3)
         	});
         
         _elevatorUpOneButton.whenPressed(new JogElevatorToteHeight(true));
@@ -94,19 +93,19 @@ public class OI {
         return _rStick;
     }
     
-    public PowerScaler getTankScaler() {
-        return _tankScaler;
+    public PowerScaler getNormalScaler() {
+        return _normalScaler;
     }
     
-    public PowerScaler getArcadeScaler() {
-    	return _arcadeScaler;
+    public PowerScaler getWimpScaler() {
+    	return _wimpScaler;
     }
     
     public Button getIntakeLeftButton() {
     	return _intakeLeftButton;
     }
     
-    public double getIntakeLeftVariablePower() {
+    public double getLeftTwist() {
     	return _lStick.getTwist();
     }
     
@@ -114,7 +113,7 @@ public class OI {
     	return _intakeRightButton;
     }
     
-    public double getIntakeRightVariablePower() {
+    public double getRightTwist() {
     	return _rStick.getTwist();
     }
     
