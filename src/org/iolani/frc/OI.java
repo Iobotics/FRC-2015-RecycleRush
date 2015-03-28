@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.iolani.frc.util.PowerScaler;
 import org.iolani.frc.commands.*;
 import org.iolani.frc.commands.auto.AutoDriveStraight;
+import org.iolani.frc.commands.auto.AutoGrabTrashCan;
 import org.iolani.frc.commands.auto.AutoTurn;
 
 /**
@@ -38,7 +39,9 @@ public class OI {
     private final JoystickButton _navCalibrateButton     = new JoystickButton(_lStick, 7);
     
     private final JoystickButton _autoTestButton1        = new JoystickButton(_lStick, 8);
-    private final JoystickButton _autoTestButton2        = new JoystickButton(_rStick, 9);
+    private final JoystickButton _autoTestButton2        = new JoystickButton(_lStick, 9);
+    private final JoystickButton _autoTestButton3        = new JoystickButton(_lStick, 10);
+    private final JoystickButton _autoTestButton4        = new JoystickButton(_lStick, 11);
     
     private final PowerScaler _tankScaler;
     private final PowerScaler _arcadeScaler;
@@ -78,7 +81,9 @@ public class OI {
         _navCalibrateButton.whenPressed(new CalibrateNavigationSensor());
         
         _autoTestButton1.whenPressed(new AutoDriveStraight(36));
-        _autoTestButton2.whenPressed(new AutoTurn(90));
+        _autoTestButton2.whenPressed(new AutoDriveStraight(120));
+        _autoTestButton3.whenPressed(new AutoTurn(90));
+        _autoTestButton4.whenPressed(new AutoGrabTrashCan());
     }
     
     public Joystick getLeftStick()  {
