@@ -9,9 +9,7 @@ public class CalibrateNavigationSensor extends CommandBase {
     public CalibrateNavigationSensor() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(drivetrain);
     	requires(navsensor);
-    	this.setInterruptible(false);
     	this.setRunWhenDisabled(true);
     }
 
