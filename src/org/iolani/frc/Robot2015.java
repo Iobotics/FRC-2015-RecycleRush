@@ -2,15 +2,17 @@
 package org.iolani.frc;
 
 import org.iolani.frc.commands.*;
-import org.iolani.frc.commands.auto.AutoTest;
+import org.iolani.frc.commands.auto.*;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 //import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import org.iolani.frc.commands.*;
 //import org.iolani.frc.subsystems.*;
@@ -27,7 +29,9 @@ public class Robot2015 extends IterativeRobot {
     Command _autoCommand;
 	PowerDistributionPanel _pdp;
 	Compressor             _compressor;
-
+	SendableChooser 	   _autoChooser;
+	
+	
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -40,9 +44,18 @@ public class Robot2015 extends IterativeRobot {
     	_compressor.clearAllPCMStickyFaults();
     	_compressor.start();
     	
+    	_autoChooser = new SendableChooser();
+    	_autoChooser.addDefault("Do Nothing",  new CommandGroup());
+    	_autoChooser.addObject("Trash Can 3", new AutoGrabTrashCan(AutoGrabTrashCan.kLEFT));
+    	_autoChooser.addObject("Trash Can 1", new AutoGrabTrashCan(AutoGrabTrashCan.kRIGHT));
+    	_autoChooser.addObject("Drive Only", new AutoDriveOnly());
+    	
+    	SmartDashboard.putData("Autonomous mode chooser", _autoChooser);
+    	
         // instantiate the command used for the autonomous period
-        //_autoCommand = new AutoTest();
-		
+        _autoCommand = new AutoGrabTrashCan();
+		//_autoCommand = new AutoDriveOnly();
+        
     	CommandBase.init();
 		new HomeElevator().start();
 		new CalibrateNavigationSensor().start();
@@ -53,8 +66,8 @@ public class Robot2015 extends IterativeRobot {
 	}
 
     public void autonomousInit() {
-        // schedule the autonomous command (example)
-        if (_autoCommand != null) _autoCommand.start();
+    	_autoCommand = (Command) _autoChooser.getSelected();
+    	_autoCommand.start();
     }
 
     /**

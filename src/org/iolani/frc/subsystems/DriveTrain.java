@@ -76,18 +76,6 @@ public class DriveTrain extends Subsystem {
     	_rTalon3.set(right);
     }
     
-    public void setTankSide(boolean side, double power) { //left = false, right = true
-    	if (side) {
-    		_rTalon1.set(power);
-    		_rTalon2.set(power);
-    		_rTalon3.set(power);
-    	} else {
-    		_lTalon1.set(power);
-    		_lTalon2.set(power);
-    		_lTalon3.set(power);
-    	}
-    }
-    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         this.setDefaultCommand(new OperateArcadeTankDrive());
@@ -140,13 +128,6 @@ public class DriveTrain extends Subsystem {
         }
 
         this.setTank(leftMotorSpeed, rightMotorSpeed);
-    }
-    
-    public double setDistanceSetpointInches(double inches) {
-    	double old = _pid.getSetpoint();
-		this.setPIDEnabled(true);
-		_pid.setSetpoint(inches);
-		return old;
     }
     
     public Encoder getLeftEncoder() {

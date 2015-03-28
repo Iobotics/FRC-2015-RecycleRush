@@ -30,8 +30,12 @@ public class NavigationSensor extends Subsystem implements PIDSource {
 		_imu.zeroYaw();
 	}
 	
-	public double pidGet() {
+	public double getGyro() {
 		return _imu.getYaw();
+	}
+	
+	public double pidGet() {
+		return this.getGyro();
 	}
 	
 	public void debug() {
